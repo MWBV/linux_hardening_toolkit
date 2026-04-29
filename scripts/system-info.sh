@@ -38,7 +38,7 @@ system_info() {
 
 	#### Active Users #####
 	title "Active Users"
-	who | awk '{print $2, $3}'
+	who | awk '{print $1 ,$2, $3}'
 }
 
 system_info
