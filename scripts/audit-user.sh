@@ -19,12 +19,19 @@ standard_users () {
   awk -F: '$3 >= 1000 && $3 < 65534 { printf "%-25s | %s\n", $1, $3 }' /etc/passwd
 }
 
+#### The function lists users without a password. ####
+users_without_password () {
+  awk -F: '($2 == "") { printf "%-25s | %s\n", $1, $3 }' /etc/passwd
+}
+
 #### Users display function ####
 display_users () {
   echo -e "\n--- System Users (Service Accounts) ---"
   system_users
   echo -e "\n--- Standard Users (UID >= 1000) ---"
   standard_users
+  echo -e "\n--- Users without Password ---"
+  users_without_password
 }
 
 display_users
