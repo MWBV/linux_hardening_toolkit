@@ -27,11 +27,25 @@ users_without_password () {
 #### Users display function ####
 display_users () {
   echo -e "\n--- System Users (Service Accounts) ---"
-  system_users
+  if ! system_users | grep -q .; then
+    echo "No system users found."
+  else
+    system_users
+  fi
+
   echo -e "\n--- Standard Users (UID >= 1000) ---"
-  standard_users
+  if ! standard_users | grep -q .; then
+    echo "No standard users found."
+  else
+    standard_users
+  fi
+
   echo -e "\n--- Users without Password ---"
-  users_without_password
+  if ! users_without_password | grep -q .; then
+    echo "No users without password found."
+  else
+    users_without_password
+  fi
 }
 
 display_users
