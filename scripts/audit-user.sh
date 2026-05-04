@@ -16,7 +16,7 @@ system_users () {
 
 ####  The function lists standard users (UID >= 1000). ####
 standard_users () {
-  awk -F: '$3 >= 1000 { printf "%-25s | %s\n", $1, $3 }' /etc/passwd
+  awk -F: '$3 >= 1000 && $3 < 65534 { printf "%-25s | %s\n", $1, $3 }' /etc/passwd
 }
 
 #### Users display function ####
